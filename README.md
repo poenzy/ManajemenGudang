@@ -27,10 +27,11 @@ For detailed documentation, refer to the files linked below (written in Indonesi
 ---
 
 ## 🤝 Contributors
-| Contributor       | GitHub Profile                                  |
-|-------------------|------------------------------------------------|
-| **Achmad Wildan** | [🌐 Profile](https://github.com/ShiraishiJunta) |
-| **Moch Arrizal**  | [🌐 Profile](https://github.com/Morzune11)    |
+| Contributor       | GitHub Profile                                   |
+|-------------------|--------------------------------------------------|
+| **Achmad Wildan** | [🌐 Profile](https://github.com/ShiraishiJunta)  |
+| **Moch Arrizal**  | [🌐 Profile](https://github.com/Morzune11)       |
+| **Fachrozzi R**  | [🌐 Profile](https://github.com/poenzy)           |
 
 ---
 
