@@ -1,16 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Profil Pengguna - Sistem Gudang</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .profile-container {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .profile-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    </style>
   </head>
   <body>
-    <div>
-      <canvas id="myChart"></canvas>
+    <div class="container mt-5">
+      <div class="profile-container p-4">
+        <div class="text-center">
+          <img
+            src="profile-placeholder.jpg"
+            alt="Foto Profil"
+            class="profile-img"
+          />
+          <h3 class="mt-2">John Doe</h3>
+          <p class="text-muted">Supervisor Gudang</p>
+        </div>
+
+        <hr />
+
+        <div class="row">
+          <div class="col-md-6">
+            <h5>Informasi Dasar</h5>
+            <p><strong>ID Pengguna:</strong> 12345</p>
+            <p><strong>Email:</strong> johndoe@example.com</p>
+            <p><strong>Telepon:</strong> +62 812 3456 7890</p>
+            <p><strong>Alamat:</strong> Jl. Raya No. 10, Jakarta</p>
+          </div>
+
+          <div class="col-md-6">
+            <h5>Detail Pekerjaan</h5>
+            <p><strong>Departemen:</strong> Gudang</p>
+            <p><strong>Lokasi:</strong> Gudang Pusat</p>
+            <p><strong>Tanggal Bergabung:</strong> 12 Januari 2023</p>
+            <p><strong>Shift Kerja:</strong> Pagi</p>
+          </div>
+        </div>
+
+        <hr />
+
+        <h5>Aktivitas & Log</h5>
+        <p><strong>Terakhir Login:</strong> 24 Maret 2025, 10:15 AM</p>
+        <p><strong>Riwayat Aktivitas:</strong> Memproses 50 pesanan hari ini</p>
+
+        <hr />
+
+        <div class="text-center">
+          <button class="btn btn-primary">Edit Profil</button>
+          <button class="btn btn-danger">Logout</button>
+        </div>
+      </div>
     </div>
 
-    <script src="js/chart.js-4.4.8/package/dist/chart.umd.js"></script>
-    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

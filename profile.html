@@ -219,6 +219,16 @@
                     Home
                   </a>
                 </li>
+              </ul>
+              <hr class="my-3" />
+
+              <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-body-secondary text-uppercase">
+                <span>Produk</span>
+                <a class="link-secondary" href="#" aria-label="Add a new report">
+                  <svg class="bi"><use xlink:href="#plus-circle"></use></svg>
+                </a>
+              </h6>
+              <ul class="nav flex-column">
                 <li class="nav-item">
                   <a
                     class="nav-link d-flex align-items-center gap-2 active text-black"
@@ -230,7 +240,6 @@
                   </a>
               </li>
               </ul>
-
               <hr class="my-3" />
 
               <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-body-secondary text-uppercase">
@@ -248,6 +257,16 @@
                   >
                     <img src="icons/person-fill.svg"  style="width: 20px;" width="20px"   alt="" srcset="">
                     Profile
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link d-flex align-items-center gap-2 active text-black"
+                    aria-current="page"
+                    href="user_management.html"
+                  >
+                    <img src="icons/people-fill.svg"  style="width: 20px;" width="20px"   alt="" srcset="">
+                    Manajemen User
                   </a>
                 </li>
               </ul>
@@ -276,32 +295,51 @@
           >
             <h1 class="h2">Profile</h1>
             </div>
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                  <div class="col-md-4 border-1">
-                    <img src="img/user-white.jpg" class="img-fluid rounded-start" alt="...">
-                  </div>
-                  <div class="col-md-8 border-dark border-1 p-1">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-4"><b>Username </b></div>
-                        <div class="col"><p>: John Doe</p></div>
+            <div class="judul-bagian">
+              <h4  style="color: black; font-size: larger;" class="fs-3">Informasi dasar</h4>
+            </div>
+            <div class="isi-profile">
+              <div class="row">
+                <div class="col-3 p-3">
+                  <img src="img/user-white.jpg" alt="" class="img-fluid">
+                </div>
+                <div class="col-8 pt-5 offset-1 ">
+                  <div class="row mt-4">
+                    <div class="col-6">
+                      <div class="username row fs-5 ">
+                        <div class="text-muted col-3">Username</div>
+                        <div class="col">: John Doe</div>
                       </div>
-                      <div class="row">
-                        <div class="col-4"><b>Email </b></div>
-                        <div class="col"><p>: JohnDoe@gmail.com</p></div>
+                      <div class="jabatan row fs-5 mt-4">
+                        <div class="text-muted col-3">Jabatan </div>
+                        <div class="col">: Super Admin</div>
                       </div>
-                      <div class="row">
-                        <div class="col-4"><b>Jabatan </b></div>
-                        <div class="col"><p>: Admin</p></div>
+                      <div class="telepon row fs-5 mt-4">
+                        <div class="text-muted col-3">Telepon </div>
+                        <div class="col">: +62 342 1342 1211</div>
                       </div>
-                      <div class="row">
-                        <div class="col text-end"><a href="" class="btn btn-primary" >Ubah</a></div>
+                    </div>
+                    <div class="col-6">
+                      <div class="idUser row fs-5 ">
+                        <div class="text-muted col-3">ID User</div>
+                        <div class="col">: 0001</div>
+                      </div>
+                      <div class="jabatan row fs-5 mt-4">
+                        <div class="text-muted col-3">Email </div>
+                        <div class="col">: johndoe1@gmail.com</div>
+                      </div>
+                      <div class="alamat row fs-5 mt-4">
+                        <div class="text-muted col-3">Alamat </div>
+                        <div class="col">: Jl. Raya No. 10, Jakarta</div>
+                      </div>
+                      <div class="text-end me-5 mt-5">
+                        <div class="btn btn-primary ">Ubah Profile</div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
         </main>
     </div>
     <script src="js/chart.js-4.4.8/package/dist/chart.umd.js"></script>
