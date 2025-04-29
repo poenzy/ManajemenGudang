@@ -24,6 +24,10 @@
         border-bottom: none !important;
       }
 
+      .sidebar {
+        min-height: 150vh;
+      }
+
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -174,12 +178,24 @@
                   <a
                     class="nav-link d-flex align-items-center gap-2 active text-black"
                     aria-current="page"
-                    href="stok.html"
+                    href="tambahProduk.php"
+                  >
+                    <img src="icons/box-solid.svg"  style="width: 20px;" width="20px"   alt="" srcset="">
+                    Tambah Produk
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a
+                    class="nav-link d-flex align-items-center gap-2 active text-black"
+                    aria-current="page"
+                    href="Produk.php"
                   >
                     <img src="icons/box-solid.svg"  style="width: 20px;" width="20px"   alt="" srcset="">
                     Stok
                   </a>
-              </li>
+                </li>
               </ul>
             </div>
             <div class="pengguna mt-4">
@@ -212,35 +228,24 @@
                 </li>
               </ul>
             </div>
-              <!-- <ul class="nav flex-column mb-auto">
-                <li class="nav-item">
-                  <a class="nav-link d-flex align-items-center gap-2" href="#">
-                    <svg class="bi">
-                      <use xlink:href="#gear-wide-connected" />
-                    </svg>
-                    Settings
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link d-flex align-items-center gap-2" href="#">
-                    <svg class="bi"><use xlink:href="#door-closed" /></svg>
-                    Sign out
-                  </a>
-                </li>
-              </ul> -->
+              </ul> 
             </div>
           </div>
         </div>
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="height: 100vh;">
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div
             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
-          >
+            >
             <h1 class="h2">Home</h1>
-            </div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A cumque, doloribus neque, iste rem explicabo at delectus voluptate fugiat provident dolore accusantium quae autem atque blanditiis, quas dolor modi minima.</p>
-            <div style="width: 500px;">
-                <canvas id="myChart"></canvas>
-            </div>
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. A cumque, doloribus
+            neque, iste rem explicabo at delectus voluptate fugiat provident dolore
+            accusantium quae autem atque blanditiis, quas dolor modi minima.
+          </p>
+          <div style="width: 500px">
+            <canvas id="myChart"></canvas>
+          </div>
         </main>
     </div>
     <script src="js/chart.js-4.4.8/package/dist/chart.umd.js"></script>
