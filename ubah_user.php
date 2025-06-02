@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 session_start();
+require_once 'user/FungsiGetOneUser.php'
 ?>
 
 
@@ -229,7 +230,6 @@ session_start();
                                     </a>
                                 </li>
                             </ul>
-
                         </div>
                         <div class="pengguna mt-4">
                             <h6
@@ -266,135 +266,41 @@ session_start();
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
-                    <h2 class="h4">Tambah Produk</h2>
+                    <h2 class="h4">Ubah Admin</h2>
                 </div>
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <form action="produkBarang/FungsiTambahProduk.php" method="post" enctype="multipart/form-data">
+                        <form method="POST" action="user/FungsiUbahAdmin.php" enctype="multipart/form-data">
                             <div class="row">
+                                <?php
+                                $user = getOneUserById($_POST['id']);
+                                ?>
                                 <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="kodeProduk" class="form-label">Kode Produk</label>
-                                        <input type="text" class="form-control form-control-sm" id="kodeProduk"
-                                            name="kode_produk" placeholder="Contoh: PRD001">
+                                    <input type="hidden" name="id" id="id" value="<?php echo $user['id_admin'] ?>">
+                                    <div class="">
+                                        <label for="jabatan" class="form-label">Jabatan</label>
+                                        <input type="text" name="jabatan" id="jabatan"
+                                            value="<?php echo $user['jabatan']; ?>"
+                                            class="form-control form-control-sm">
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="namaProduk" class="form-label">Nama Produk</label>
-                                        <input type="text" class="form-control form-control-sm" id="namaProduk"
-                                            name="nama_produk">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="deskripsi" class="form-label">Deskripsi</label>
-                                        <textarea class="form-control form-control-sm" id="deskripsi" name="deskripsi"
-                                            rows="2"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="kategori" class="form-label">Kategori</label>
-                                        <select class="form-select form-select-sm" id="kategori" name="kategori">
-                                            <option value="Sembako">Sembako</option>
-                                            <option value="Kebutuhan Rumah Tangga">Kebutuhan Rumah Tangga</option>
-                                            <option value="Minuman">Minuman</option>
-                                            <option value="Kebutuhan Pribadi">Kebutuhan Pribadi</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="merek" class="form-label">Merek</label>
-                                        <input type="text" class="form-control form-control-sm" id="merek" name="merek">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="jumlahStok" class="form-label">Jumlah Stok</label>
-                                        <input type="number" class="form-control form-control-sm disabled"
-                                            id="jumlahStok" name="jumlah_stok" readonly value="0">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="satuan" class="form-label">Satuan</label>
-                                        <select class="form-select form-select-sm" id="satuan" name="satuan">
-                                            <option value="botol">Botol</option>
-                                            <option value="karung">Karung</option>
-                                            <option value="kg">Kg</option>
-                                            <option value="bungkus">Bungkus</option>
-                                            <option value="kotak">Kotak</option>
-                                            <option value="tube">Tube</option>
-                                            <option value="pak">Pak</option>
-                                            <option value="roll">Roll</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                    <div class="">
+                                        <label for="status" class="form-label">Status</label>
+                                        <select name="status" id="status" class="form-select">
+                                            <?php $status = ["aktif", "nonaktif"];
+                                            foreach ($status as $s) {
+                                                $active = $user['status'] == $s ? 'active' : '';
+                                                echo "<option value='{$user['status']}' $active>$s</option>";
+                                            }
+                                            ?>
 
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="lokasiGudang" class="form-label">Lokasi Gudang</label>
-                                        <select class="form-select form-select-sm" id="lokasiGudang"
-                                            name="lokasi_gudang">
-                                            <option value="A">Gudang A</option>
-                                            <option value="B">Gudang B</option>
-                                            <option value="C">Gudang C</option>
                                         </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="hargaBeli" class="form-label">Harga Beli</label>
-                                        <input type="number" class="form-control form-control-sm" id="hargaBeli"
-                                            name="harga_beli">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="hargaJual" class="form-label">Harga Jual</label>
-                                        <input type="number" class="form-control form-control-sm" id="hargaJual"
-                                            name="harga_jual">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="tanggalMasuk" class="form-label">Tanggal Masuk</label>
-                                        <input type="date" class="form-control form-control-sm" id="tanggalMasuk"
-                                            name="tanggal_masuk">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="kedaluwarsa" class="form-label">Tanggal Kedaluwarsa</label>
-                                        <input type="date" class="form-control form-control-sm" id="kedaluwarsa"
-                                            name="kedaluwarsa">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Status Produk</label>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status_produk"
-                                                id="statusAktif" value="aktif">
-                                            <label class="form-check-label" for="statusAktif">Aktif</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status_produk"
-                                                id="statusNonAktif" value="non-aktif" checked>
-                                            <label class="form-check-label" for="statusNonAktif">Non-Aktif</label>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="foto" class="form-label">Foto Produk</label>
-                                        <input type="file" class="form-control form-control-sm" id="foto" name="foto">
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="text-end mt-4">
-                                <button type="submit" class="btn btn-primary">Simpan Produk</button>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                             </div>
                         </form>
-                        <!-- Toast notification -->
-                        <script>
-                        <?php if (isset($_SESSION['toast'])): ?>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            <?php
-                                    $toastMessage = $_SESSION['toast'];
-                                    $isSuccess = strpos($toastMessage, '✅') !== false;
-                                    $isError = strpos($toastMessage, '❌') !== false;
-                                    ?>
-                            <?php if ($isSuccess): ?>
-                            toastr.success("<?= str_replace('✅ ', '', $toastMessage); ?>");
-                            <?php elseif ($isError): ?>
-                            toastr.error("<?= str_replace('❌ ', '', $toastMessage); ?>");
-                            <?php else: ?>
-                            toastr.info("<?= $toastMessage; ?>");
-                            <?php endif; ?>
-                            <?php unset($_SESSION['toast']); ?>
-                        });
-                        <?php endif; ?>
-                        </script>
                     </div>
                 </div>
         </div>

@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="auto">
 <?php
 session_start();
 ?>
+
+
+<html lang="en" data-bs-theme="auto">
 
 <head>
     <meta charset="utf-8" />
@@ -26,17 +28,19 @@ session_start();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <style>
     .navbar a {
+        /* border: none !important;
+        box-shadow: none !important; */
+        /* border-right: 1px solid rgba(232, 224, 224, 0.635); */
         border-bottom: none !important;
-    }
-
-    .aktif {
-        color: rgb(233, 220, 220) !important;
-        font-size: 17px !important;
-        text-shadow: 1px 1px 1px black;
     }
 
     .sidebar {
         min-height: 150vh;
+    }
+
+    .formTambahProduk {
+        width: 70%;
+        margin: 20px auto;
     }
 
     .bd-placeholder-img {
@@ -116,6 +120,41 @@ session_start();
     .bd-mode-toggle .dropdown-menu .active .bi {
         display: block !important;
     }
+
+    /* CSS Fiel Input GPT */
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    input[type="file"],
+    textarea,
+    select {
+        border: 2px solid #ced4da !important;
+        border-radius: 6px;
+        font-size: 1rem;
+        padding: 10px 14px;
+        background-color: #fff;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+        border-color: #0d6efd !important;
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        outline: none;
+    }
+
+    label.form-label {
+        font-weight: 600;
+        color: #222;
+    }
+
+    .form-control {
+        background-color: #fff !important;
+    }
+
+    /* End CSS Fielnd Input GPT */
     </style>
     <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet" />
@@ -126,20 +165,18 @@ session_start();
         style="background-color:#fff ; border-bottom: 1px solid rgba(232, 224, 224, 0.635);">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-dar"
             style="height: 50px; padding-top: 10px; background-color: #fcfcfc;" href="index.html">Ma.Dang</a>
-
     </header>
-
     <div class="container-fluid">
-        <div class="row">
-            <div class="sidebar border border-right col-md-3 col-lg-2 p-0 "
+        <div class="row d-flex align-items-stretch" style="min-height: 100vh;">
+            <div class="sidebar h-100 border border-right col-md-3 col-lg-2 p-0 "
                 style="background-color: #fcfcfc; border-top:none !important;">
                 <div class="offcanvas-md offcanvas-end" tabindex="-1" id="sidebarMenu"
                     aria-labelledby="sidebarMenuLabel" style="background-color: #fff;">
                     <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2  text-black" aria-current="page"
-                                    href="index.php">
+                                <a class="nav-link d-flex align-items-center gap-2 active text-black"
+                                    aria-current="page" href="index.php">
                                     <img src="icons/house-solid.svg" width="20px" alt="" srcset="">
                                     Home
                                 </a>
@@ -148,8 +185,8 @@ session_start();
 
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2  text-black" aria-current="page"
-                                    href="tentang.php">
+                                <a class="nav-link d-flex align-items-center gap-2 active text-black"
+                                    aria-current="page" href="tentang.php">
                                     <img src="icons/file-person-fill.svg" width="20px" alt="" srcset="">
                                     Tentang kami
                                 </a>
@@ -160,7 +197,7 @@ session_start();
                             <h6
                                 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-body-secondary text-uppercase">
                                 <span>Produk</span>
-                                <a class="link-secondary" href="" aria-label="Add a new report">
+                                <a class="link-secondary" href="#" aria-label="Add a new report">
                                     <svg class="bi">
                                         <use xlink:href="#plus-circle"></use>
                                     </svg>
@@ -168,30 +205,31 @@ session_start();
                             </h6>
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center gap-2  text-black" aria-current="page"
-                                        href="tambahProduk.php">
+                                    <a class="nav-link d-flex align-items-center gap-2 active text-black"
+                                        aria-current="page" href="tambahProduk.php">
                                         <img src="icons/box-solid.svg" style="width: 20px;" width="20px" alt=""
                                             srcset="">
                                         Tambah Produk
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center gap-2  text-black" aria-current="page"
-                                        href="produk.php">
-                                        <img src="icons/box-seam-fill.svg" style="width: 20px;" width="20px" alt=""
+                                    <a class="nav-link d-flex align-items-center gap-2 active text-black"
+                                        aria-current="page" href="produk.php">
+                                        <img src="icons/box-solid.svg" style="width: 20px;" width="20px" alt=""
                                             srcset="">
                                         Daftar Produk
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center gap-2  text-black" aria-current="page"
-                                        href="aturStok.php">
-                                        <img src="icons/clipboard-fill.svg" style="width: 20px;" width="20px" alt=""
+                                    <a class="nav-link d-flex align-items-center gap-2 active text-black"
+                                        aria-current="page" href="aturStok.php">
+                                        <img src="icons/box-solid.svg" style="width: 20px;" width="20px" alt=""
                                             srcset="">
                                         Atur Stok
                                     </a>
                                 </li>
                             </ul>
+
                         </div>
                         <div class="pengguna mt-4">
                             <h6
@@ -205,16 +243,16 @@ session_start();
                             </h6>
                             <ul class="nav flex-column ">
                                 <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center gap-2  text-black" aria-current="page"
-                                        href="profilPengguna.php">
+                                    <a class="nav-link d-flex align-items-center gap-2 active text-black"
+                                        aria-current="page" href="profilPengguna.php">
                                         <img src="icons/person-fill.svg" style="width: 20px;" width="20px" alt=""
                                             srcset="">
                                         Profil
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center gap-2  text-black" aria-current="page"
-                                        href="user_management.php">
+                                    <a class="nav-link d-flex align-items-center gap-2 active text-black"
+                                        aria-current="page" href="user_management.php">
                                         <img src="icons/people-fill.svg" style="width: 20px;" width="20px" alt=""
                                             srcset="">
                                         Manajemen Pengguna
@@ -226,158 +264,75 @@ session_start();
                 </div>
             </div>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class=" d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3
-                border-bottom">
-                    <h2>Manajemen Produk</h2>
-                    <!-- Modal -->
-                    <div class="modal fade" id="modalHapus" tabindex="-1" aria-labelledby="modalHapusLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="modalHapusLabel">Konfirmasi Hapus</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Yakin ingin menghapus data</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-danger"
-                                        onclick="submitFormHapus()">Hapus</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Modal -->
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
+                    <h2 class="h4">Tambah Produk</h2>
                 </div>
-                <!-- Search -->
-                <div class="row">
-                    <div class="col-6 offset-6">
-                        <form action="" method="get" class="me-5">
-                            <div class="input-group">
-                                <input type="text" name="cari" id="cari" placeholder="Cari berdasarkan nama produk"
-                                    class="form-control"
-                                    value="<?php echo isset($_GET['cari']) ? htmlspecialchars($_GET['cari']) : '' ?>">
-                                <button class="btn btn-primary" type="submit">Cari</button>
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <?php
+                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                            // Ambil data id_produk dan jumlah dari form yang dikirim
+                            $id_produk = $_POST['id'];
+                            $keterangan = $_POST['keterangan'];
+                        }
+                        ?>
+                        <form action="produkBarang/ubahStok.php" method="POST">
+                            <!-- Hidden ID Produk -->
+                            <input type="hidden" name="id_produk" value="<?php echo $id_produk; ?>">
+
+                            <!-- Input Keterangan -->
+                            <input type="hidden" name="keterangan"
+                                value="<?php echo $keterangan == 'masuk' ? 'masuk' : 'keluar'; ?>">
+
+                            <!-- Input Jumlah -->
+                            <div class="mb-3">
+                                <label for="jumlah" class="form-label">Jumlah</label>
+                                <input type="number" class="form-control" id="jumlah" name="jumlah" value="10" min="1"
+                                    required>
+                            </div>
+
+                            <!-- Input Tanggal Transaksi -->
+                            <div class="mb-3">
+                                <label for="tanggal_transaksi" class="form-label">Tanggal Transaksi</label>
+                                <input type="date" class="form-control" id="tanggal_transaksi" name="tanggal_transaksi"
+                                    required>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button type="reset" class="btn btn-secondary">Reset</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </form>
                     </div>
                 </div>
-                <!-- End Search -->
-                <!-- Table Barang -->
-                <table class="table table-hover mt-4">
-                    <thead>
-                        <tr>
-                            <th scope="col">Kode Produk</th>
-                            <th scope="col">Foto Produk</th>
-                            <th scope="col">Nama Barang</th>
-                            <th scope="col">Kategori</th>
-                            <th scope="col">Merek</th>
-                            <th scope="col">Lokasi Gudang</th>
-                            <th scope="col">Harga Jual</th>
-                            <th scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        include('produkBarang/FungsiPagination.php');
-                        $barang = getBarangLimit();
-                        if ($barang->num_rows > 0) {
-                            while ($row = mysqli_fetch_assoc($barang)) {
-                                echo "<tr>";
-                                echo "<th>" . $row['kode_produk'] . "</th>";
-                                echo "<td> <img src='img/" . basename($row['foto_produk']) . "'  class='img-fluid' style='width:80px;'> </td>";
-                                echo "<td>" . $row['nama_produk'] . "</td>";
-                                echo "<td>" . $row['kategori'] . "</td>";
-                                echo "<td>" . $row['merek'] . "</td>";
-                                echo "<td>" . $row['lokasi_gudang'] . "</td>";
-                                echo "<td>" . $row['harga_jual'] . "</td>";
-                                echo "<td>";
-                                // Button Ubah
-                                echo "<form method='POST' action='produkBarang/FungsiGetProduk.php'>
-                                <input type='hidden' name='id' value='{$row['id_produk']}'>
-                                <button type='submit' class='btn btn-primary'>Ubah</button>
-                                </form>";
-                                echo "<form id='formHapus{$row['id_produk']}' action='produkBarang/FungsiHapusProduk.php' method='POST'>
-                                <input type='hidden' name='id' value='{$row['id_produk']}'>
-                                <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#modalHapus' onclick='setIdFormDelete(\"formHapus{$row['id_produk']}\")'>Hapus</button>
-                                </form>";
-                                echo "</td>";
-                            }
-                        } else {
-                            echo "Produk {$_GET['cari']} tidak ditemukan";
-                        }
-                        ?>
-
-                    </tbody>
-                </table>
-                <!-- End Table barang -->
-                <nav>
-                    <ul class="pagination">
-                        <?php for ($i = 1; $i <= $_SESSION['totalHalaman']; $i++): ?>
-                        <li class="page-item <?= ($i == $_SESSION['halamanSekarang']) ? 'active' : '' ?>">
-                            <a class="page-link"
-                                href="?page=<?= $i ?>&cari=<?php echo isset($_GET['cari']) ? urlencode($_GET['cari']) : '' ?>"><?= $i ?></a>
-                        </li>
-                        <?php endfor; ?>
-                    </ul>
-                </nav>
-            </main>
         </div>
 
     </div>
-    <!-- Toggle nav link -->
-    <!-- <script>
-    const links = document.querySelectorAll('.sidebar  a.nav-link');
-    const currentURl = window.location.pathname.split('/').pop()
-    links.forEach(link => {
-        const linkHref = link.getAttribute('href').split('/').pop()
-        if (linkHref === currentURl) {
-            link.classList.add('aktif')
-        }
-    })
-    </script> -->
-    <!-- End nav link -->
-    <!-- Modal hapus -->
-    <script>
-    let idForm = "";
+    </div>
+    </main>
+    </div>
 
-    function setIdFormDelete(id) {
-        idForm = id
-    }
-
-    function submitFormHapus() {
-        if (idForm) {
-            document.getElementById(idForm).submit()
-        }
-    }
-    </script>
-    <!-- Toast Notification -->
     <script>
     <?php if (isset($_SESSION['toast'])): ?>
     document.addEventListener("DOMContentLoaded", function() {
         <?php
                 $toastMessage = $_SESSION['toast'];
-                $isSuccess = strpos($toastMessage, 'success') !== false;
-                $isError = strpos($toastMessage, 'failed') !== false;
+                $isSuccess = strpos($toastMessage, '✅') !== false;
+                $isError = strpos($toastMessage, '❌') !== false;
                 ?>
-
         <?php if ($isSuccess): ?>
-        toastr.success("<?= str_replace('success', '', $toastMessage); ?>");
+        toastr.success("<?= str_replace('✅ ', '', $toastMessage); ?>");
         <?php elseif ($isError): ?>
-        toastr.error("<?= str_replace('failed', '', $toastMessage); ?>");
+        toastr.error("<?= str_replace('❌ ', '', $toastMessage); ?>");
         <?php else: ?>
         toastr.info("<?= $toastMessage; ?>");
         <?php endif; ?>
         <?php unset($_SESSION['toast']); ?>
-    })
+    });
     <?php endif; ?>
     </script>
-    <script src="js/chart.js-4.4.8/package/dist/chart.umd.js">
-    </script>
+    <script src="js/chart.js-4.4.8/package/dist/chart.umd.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <!-- <script src="js/dashboard.js"></script> -->
     <script src="js/script.js"></script>

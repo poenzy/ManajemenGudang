@@ -26,13 +26,10 @@ session_start();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <style>
     .navbar a {
+        /* border: none !important;
+        box-shadow: none !important; */
+        /* border-right: 1px solid rgba(232, 224, 224, 0.635); */
         border-bottom: none !important;
-    }
-
-    .aktif {
-        color: rgb(233, 220, 220) !important;
-        font-size: 17px !important;
-        text-shadow: 1px 1px 1px black;
     }
 
     .sidebar {
@@ -138,8 +135,8 @@ session_start();
                     <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2  text-black" aria-current="page"
-                                    href="index.php">
+                                <a class="nav-link d-flex align-items-center gap-2 active text-black"
+                                    aria-current="page" href="index.php">
                                     <img src="icons/house-solid.svg" width="20px" alt="" srcset="">
                                     Home
                                 </a>
@@ -148,8 +145,8 @@ session_start();
 
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2  text-black" aria-current="page"
-                                    href="tentang.php">
+                                <a class="nav-link d-flex align-items-center gap-2 active text-black"
+                                    aria-current="page" href="tentang.php">
                                     <img src="icons/file-person-fill.svg" width="20px" alt="" srcset="">
                                     Tentang kami
                                 </a>
@@ -168,25 +165,25 @@ session_start();
                             </h6>
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center gap-2  text-black" aria-current="page"
-                                        href="tambahProduk.php">
+                                    <a class="nav-link d-flex align-items-center gap-2 active text-black"
+                                        aria-current="page" href="tambahProduk.php">
                                         <img src="icons/box-solid.svg" style="width: 20px;" width="20px" alt=""
                                             srcset="">
                                         Tambah Produk
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center gap-2  text-black" aria-current="page"
-                                        href="produk.php">
-                                        <img src="icons/box-seam-fill.svg" style="width: 20px;" width="20px" alt=""
+                                    <a class="nav-link d-flex align-items-center gap-2 active text-black"
+                                        aria-current="page" href="produk.php">
+                                        <img src="icons/box-solid.svg" style="width: 20px;" width="20px" alt=""
                                             srcset="">
                                         Daftar Produk
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center gap-2  text-black" aria-current="page"
-                                        href="aturStok.php">
-                                        <img src="icons/clipboard-fill.svg" style="width: 20px;" width="20px" alt=""
+                                    <a class="nav-link d-flex align-items-center gap-2 active text-black"
+                                        aria-current="page" href="aturStok.php">
+                                        <img src="icons/box-solid.svg" style="width: 20px;" width="20px" alt=""
                                             srcset="">
                                         Atur Stok
                                     </a>
@@ -205,16 +202,16 @@ session_start();
                             </h6>
                             <ul class="nav flex-column ">
                                 <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center gap-2  text-black" aria-current="page"
-                                        href="profilPengguna.php">
+                                    <a class="nav-link d-flex align-items-center gap-2 active text-black"
+                                        aria-current="page" href="profilPengguna.php">
                                         <img src="icons/person-fill.svg" style="width: 20px;" width="20px" alt=""
                                             srcset="">
                                         Profil
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center gap-2  text-black" aria-current="page"
-                                        href="user_management.php">
+                                    <a class="nav-link d-flex align-items-center gap-2 active text-black"
+                                        aria-current="page" href="user_management.php">
                                         <img src="icons/people-fill.svg" style="width: 20px;" width="20px" alt=""
                                             srcset="">
                                         Manajemen Pengguna
@@ -228,7 +225,7 @@ session_start();
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class=" d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3
                 border-bottom">
-                    <h2>Manajemen Produk</h2>
+                    <h2>Manajemen Stok</h2>
                     <!-- Modal -->
                     <div class="modal fade" id="modalHapus" tabindex="-1" aria-labelledby="modalHapusLabel"
                         aria-hidden="true">
@@ -274,36 +271,38 @@ session_start();
                             <th scope="col">Kode Produk</th>
                             <th scope="col">Foto Produk</th>
                             <th scope="col">Nama Barang</th>
-                            <th scope="col">Kategori</th>
-                            <th scope="col">Merek</th>
-                            <th scope="col">Lokasi Gudang</th>
-                            <th scope="col">Harga Jual</th>
+                            <th scope="col">Jumlah Stok</th>
+                            <th scope="col">Satuan</th>
+                            <th scope="col">Transaksi Terbaru</th>
+                            <th scope="col">Keterangan</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         include('produkBarang/FungsiPagination.php');
-                        $barang = getBarangLimit();
+                        $barang = getStokBarang();
                         if ($barang->num_rows > 0) {
                             while ($row = mysqli_fetch_assoc($barang)) {
                                 echo "<tr>";
                                 echo "<th>" . $row['kode_produk'] . "</th>";
                                 echo "<td> <img src='img/" . basename($row['foto_produk']) . "'  class='img-fluid' style='width:80px;'> </td>";
                                 echo "<td>" . $row['nama_produk'] . "</td>";
-                                echo "<td>" . $row['kategori'] . "</td>";
-                                echo "<td>" . $row['merek'] . "</td>";
-                                echo "<td>" . $row['lokasi_gudang'] . "</td>";
-                                echo "<td>" . $row['harga_jual'] . "</td>";
+                                echo "<td>" . $row['jumlah'] . "</td>";
+                                echo "<td>" . $row['satuan'] . "</td>";
+                                echo "<td>" . $row['tanggal_transaksi'] . "</td>";
+                                echo "<td>" . $row['keterangan'] . "</td>";
                                 echo "<td>";
                                 // Button Ubah
-                                echo "<form method='POST' action='produkBarang/FungsiGetProduk.php'>
+                                echo "<form method='POST' action='formUbahStok.php'>
                                 <input type='hidden' name='id' value='{$row['id_produk']}'>
-                                <button type='submit' class='btn btn-primary'>Ubah</button>
+                                <input type='hidden' name='keterangan' value='masuk'>
+                                <button type='submit' class='btn btn-primary'>Masuk</button>
                                 </form>";
-                                echo "<form id='formHapus{$row['id_produk']}' action='produkBarang/FungsiHapusProduk.php' method='POST'>
+                                echo "<form id='formHapus{$row['id_produk']}' action='formUbahStok.php' method='POST'>
                                 <input type='hidden' name='id' value='{$row['id_produk']}'>
-                                <button type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#modalHapus' onclick='setIdFormDelete(\"formHapus{$row['id_produk']}\")'>Hapus</button>
+                                <input type='hidden' name='keterangan' value='keluar'>
+                                <button type='submit' class='btn btn-danger'>Keluar</button>
                                 </form>";
                                 echo "</td>";
                             }
@@ -326,21 +325,11 @@ session_start();
                     </ul>
                 </nav>
             </main>
+
+
         </div>
 
     </div>
-    <!-- Toggle nav link -->
-    <!-- <script>
-    const links = document.querySelectorAll('.sidebar  a.nav-link');
-    const currentURl = window.location.pathname.split('/').pop()
-    links.forEach(link => {
-        const linkHref = link.getAttribute('href').split('/').pop()
-        if (linkHref === currentURl) {
-            link.classList.add('aktif')
-        }
-    })
-    </script> -->
-    <!-- End nav link -->
     <!-- Modal hapus -->
     <script>
     let idForm = "";
@@ -361,14 +350,14 @@ session_start();
     document.addEventListener("DOMContentLoaded", function() {
         <?php
                 $toastMessage = $_SESSION['toast'];
-                $isSuccess = strpos($toastMessage, 'success') !== false;
-                $isError = strpos($toastMessage, 'failed') !== false;
+                $isSuccess = strpos($toastMessage, 'Success') !== false;
+                $isError = strpos($toastMessage, 'Failed') !== false;
                 ?>
 
         <?php if ($isSuccess): ?>
-        toastr.success("<?= str_replace('success', '', $toastMessage); ?>");
+        toastr.success("<?= str_replace('Success', '', $toastMessage); ?>");
         <?php elseif ($isError): ?>
-        toastr.error("<?= str_replace('failed', '', $toastMessage); ?>");
+        toastr.error("<?= str_replace('Failed', '', $toastMessage); ?>");
         <?php else: ?>
         toastr.info("<?= $toastMessage; ?>");
         <?php endif; ?>

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
 <?php
 session_start();
+require_once 'user/FungsiGetOneUser.php';
 ?>
 
-
+<!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
 
 <head>
@@ -38,11 +38,6 @@ session_start();
         min-height: 150vh;
     }
 
-    .formTambahProduk {
-        width: 70%;
-        margin: 20px auto;
-    }
-
     .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -55,6 +50,31 @@ session_start();
         .bd-placeholder-img-lg {
             font-size: 3.5rem;
         }
+    }
+
+    .profile-header {
+        background-color: #0d6efd;
+        color: white;
+        padding: 2rem;
+        border-top-left-radius: 0.75rem;
+        border-top-right-radius: 0.75rem;
+    }
+
+    .avatar {
+        width: 100px;
+        height: 100px;
+        background-color: #ffffff33;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 40px;
+        color: white;
+    }
+
+    .profile-card {
+        max-width: 700px;
+        margin: auto;
     }
 
     .b-example-divider {
@@ -120,41 +140,6 @@ session_start();
     .bd-mode-toggle .dropdown-menu .active .bi {
         display: block !important;
     }
-
-    /* CSS Fiel Input GPT */
-    input[type="text"],
-    input[type="number"],
-    input[type="date"],
-    input[type="file"],
-    textarea,
-    select {
-        border: 2px solid #ced4da !important;
-        border-radius: 6px;
-        font-size: 1rem;
-        padding: 10px 14px;
-        background-color: #fff;
-        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
-        transition: border-color 0.3s, box-shadow 0.3s;
-    }
-
-    input:focus,
-    textarea:focus,
-    select:focus {
-        border-color: #0d6efd !important;
-        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
-        outline: none;
-    }
-
-    label.form-label {
-        font-weight: 600;
-        color: #222;
-    }
-
-    .form-control {
-        background-color: #fff !important;
-    }
-
-    /* End CSS Fielnd Input GPT */
     </style>
     <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet" />
@@ -165,10 +150,12 @@ session_start();
         style="background-color:#fff ; border-bottom: 1px solid rgba(232, 224, 224, 0.635);">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-dar"
             style="height: 50px; padding-top: 10px; background-color: #fcfcfc;" href="index.html">Ma.Dang</a>
+
     </header>
+
     <div class="container-fluid">
-        <div class="row d-flex align-items-stretch" style="min-height: 100vh;">
-            <div class="sidebar h-100 border border-right col-md-3 col-lg-2 p-0 "
+        <div class="row">
+            <div class="sidebar border border-right col-md-3 col-lg-2 p-0 "
                 style="background-color: #fcfcfc; border-top:none !important;">
                 <div class="offcanvas-md offcanvas-end" tabindex="-1" id="sidebarMenu"
                     aria-labelledby="sidebarMenuLabel" style="background-color: #fff;">
@@ -229,7 +216,6 @@ session_start();
                                     </a>
                                 </li>
                             </ul>
-
                         </div>
                         <div class="pengguna mt-4">
                             <h6
@@ -263,151 +249,89 @@ session_start();
                     </div>
                 </div>
             </div>
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="height: 100vh">
                 <div
-                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
-                    <h2 class="h4">Tambah Produk</h2>
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Profile</h1>
                 </div>
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <form action="produkBarang/FungsiTambahProduk.php" method="post" enctype="multipart/form-data">
-                            <div class="row">
+                <div class="container py-5">
+                    <div class="card profile-card shadow">
+                        <!-- Header Profil -->
+                        <?php $user = getOneUser('admin1'); ?>
+                        <div class="profile-header text-center">
+                            <div class="avatar mx-auto mb-3"><img
+                                    src="<?php echo 'img/profil/' . basename($user['foto_profil']); ?>" class="avatar"
+                                    alt="">
+                            </div>
+                            <h4 class="mb-0"><?php echo $user['nama_lengkap'] ?></h4>
+                            <!-- <small>ID User: <?php $user['id_admin'] ?></small> -->
+                        </div>
+
+                        <!-- Informasi Dasar -->
+                        <div class="card-body">
+                            <div class="row g-3">
                                 <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="kodeProduk" class="form-label">Kode Produk</label>
-                                        <input type="text" class="form-control form-control-sm" id="kodeProduk"
-                                            name="kode_produk" placeholder="Contoh: PRD001">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="namaProduk" class="form-label">Nama Produk</label>
-                                        <input type="text" class="form-control form-control-sm" id="namaProduk"
-                                            name="nama_produk">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="deskripsi" class="form-label">Deskripsi</label>
-                                        <textarea class="form-control form-control-sm" id="deskripsi" name="deskripsi"
-                                            rows="2"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="kategori" class="form-label">Kategori</label>
-                                        <select class="form-select form-select-sm" id="kategori" name="kategori">
-                                            <option value="Sembako">Sembako</option>
-                                            <option value="Kebutuhan Rumah Tangga">Kebutuhan Rumah Tangga</option>
-                                            <option value="Minuman">Minuman</option>
-                                            <option value="Kebutuhan Pribadi">Kebutuhan Pribadi</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="merek" class="form-label">Merek</label>
-                                        <input type="text" class="form-control form-control-sm" id="merek" name="merek">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="jumlahStok" class="form-label">Jumlah Stok</label>
-                                        <input type="number" class="form-control form-control-sm disabled"
-                                            id="jumlahStok" name="jumlah_stok" readonly value="0">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="satuan" class="form-label">Satuan</label>
-                                        <select class="form-select form-select-sm" id="satuan" name="satuan">
-                                            <option value="botol">Botol</option>
-                                            <option value="karung">Karung</option>
-                                            <option value="kg">Kg</option>
-                                            <option value="bungkus">Bungkus</option>
-                                            <option value="kotak">Kotak</option>
-                                            <option value="tube">Tube</option>
-                                            <option value="pak">Pak</option>
-                                            <option value="roll">Roll</option>
-                                        </select>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="bi bi-person-badge me-2 text-primary"></i>
+                                        <strong>Role:</strong> <span class="ms-1"><?php echo $user['jabatan'] ?></span>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="lokasiGudang" class="form-label">Lokasi Gudang</label>
-                                        <select class="form-select form-select-sm" id="lokasiGudang"
-                                            name="lokasi_gudang">
-                                            <option value="A">Gudang A</option>
-                                            <option value="B">Gudang B</option>
-                                            <option value="C">Gudang C</option>
-                                        </select>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="bi bi-envelope-at me-2 text-primary"></i>
+                                        <strong>Email:</strong>
+                                        <span class="ms-1"><?php echo $user['email'] ?></span>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="hargaBeli" class="form-label">Harga Beli</label>
-                                        <input type="number" class="form-control form-control-sm" id="hargaBeli"
-                                            name="harga_beli">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="bi bi-telephone me-2 text-primary"></i>
+                                        <strong>Telepon:</strong>
+                                        <span class="ms-1"><?php echo $user['no_telepon'] ?></span>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="hargaJual" class="form-label">Harga Jual</label>
-                                        <input type="number" class="form-control form-control-sm" id="hargaJual"
-                                            name="harga_jual">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="tanggalMasuk" class="form-label">Tanggal Masuk</label>
-                                        <input type="date" class="form-control form-control-sm" id="tanggalMasuk"
-                                            name="tanggal_masuk">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="kedaluwarsa" class="form-label">Tanggal Kedaluwarsa</label>
-                                        <input type="date" class="form-control form-control-sm" id="kedaluwarsa"
-                                            name="kedaluwarsa">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Status Produk</label>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status_produk"
-                                                id="statusAktif" value="aktif">
-                                            <label class="form-check-label" for="statusAktif">Aktif</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status_produk"
-                                                id="statusNonAktif" value="non-aktif" checked>
-                                            <label class="form-check-label" for="statusNonAktif">Non-Aktif</label>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="foto" class="form-label">Foto Produk</label>
-                                        <input type="file" class="form-control form-control-sm" id="foto" name="foto">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="bi bi-geo-alt me-2 text-primary"></i>
+                                        <strong>Alamat:</strong>
+                                        <span class="ms-1"><?php echo $user['alamat'] ?></span>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="text-end mt-4">
-                                <button type="submit" class="btn btn-primary">Simpan Produk</button>
+                                <a href="ubah_profil.php" class="btn btn-outline-primary">Ubah Profil</a>
                             </div>
-                        </form>
-                        <!-- Toast notification -->
-                        <script>
-                        <?php if (isset($_SESSION['toast'])): ?>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            <?php
-                                    $toastMessage = $_SESSION['toast'];
-                                    $isSuccess = strpos($toastMessage, '✅') !== false;
-                                    $isError = strpos($toastMessage, '❌') !== false;
-                                    ?>
-                            <?php if ($isSuccess): ?>
-                            toastr.success("<?= str_replace('✅ ', '', $toastMessage); ?>");
-                            <?php elseif ($isError): ?>
-                            toastr.error("<?= str_replace('❌ ', '', $toastMessage); ?>");
-                            <?php else: ?>
-                            toastr.info("<?= $toastMessage; ?>");
-                            <?php endif; ?>
-                            <?php unset($_SESSION['toast']); ?>
-                        });
-                        <?php endif; ?>
-                        </script>
+                        </div>
                     </div>
                 </div>
+            </main>
         </div>
-
-    </div>
-    </div>
-    </main>
-    </div>
-
-    <script src="js/chart.js-4.4.8/package/dist/chart.umd.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <!-- <script src="js/dashboard.js"></script> -->
-    <script src="js/script.js"></script>
+        <script>
+        <?php if (isset($_SESSION['toast'])): ?>
+        document.addEventListener("DOMContentLoaded", function() {
+            <?php
+                    $toastMessage = $_SESSION['toast'];
+                    $isSuccess = strpos($toastMessage, 'success') !== false;
+                    $isFalse = strpos($toastMessage, 'failed' !== false);
+                    ?>
+            <?php if ($isSuccess): ?>
+            toastr.success(<?php echo str_replace('success', '', $toastMessage) ?>)
+            <?php elseif ($isFalse): ?>
+            toastr.error(<?php echo str_replace('failed', '', $toastMessage) ?>);
+            <?php else: ?>
+            toastr.info(<?php echo $toastMessage ?>)
+            <?php endif ?>
+            <?php unset($_SESSION['toast']) ?>
+        })
+        <?php endif; ?>
+        </script>
+        <script src="js/chart.js-4.4.8/package/dist/chart.umd.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <!-- <script src="js/dashboard.js"></script> -->
+        <script src="js/script.js"></script>
 </body>
 
 </html>

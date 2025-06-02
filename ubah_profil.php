@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <?php
-session_start();
+require_once 'user/FungsiGetOneUser.php';
 ?>
-
-
 <html lang="en" data-bs-theme="auto">
 
 <head>
@@ -154,6 +152,12 @@ session_start();
         background-color: #fff !important;
     }
 
+    #email_user {
+        border-width: 2px !important;
+        border-color: rgb(206, 204, 204) !important;
+        min-height: 45px;
+    }
+
     /* End CSS Fielnd Input GPT */
     </style>
     <!-- Custom styles for this template -->
@@ -229,7 +233,6 @@ session_start();
                                     </a>
                                 </li>
                             </ul>
-
                         </div>
                         <div class="pengguna mt-4">
                             <h6
@@ -266,138 +269,59 @@ session_start();
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
-                    <h2 class="h4">Tambah Produk</h2>
+                    <h2 class="h4">Ubah Profil</h2>
                 </div>
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <form action="produkBarang/FungsiTambahProduk.php" method="post" enctype="multipart/form-data">
+                        <form method="POST" action="user/FungsiUbahProfil.php" enctype="multipart/form-data">
+                            <?php $user = getOneUser('admin1') ?>
                             <div class="row">
                                 <div class="col-md-6">
+                                    <input type="hidden" name="id_admin" value="<?php echo $user['id_admin'] ?>">
                                     <div class="mb-3">
-                                        <label for="kodeProduk" class="form-label">Kode Produk</label>
-                                        <input type="text" class="form-control form-control-sm" id="kodeProduk"
-                                            name="kode_produk" placeholder="Contoh: PRD001">
+                                        <label for="namaLengkap" class="form-label">Nama Lengkap</label>
+                                        <input type="text" class="form-control form-control-sm" id="namaLengkap"
+                                            name="nama_lengkap" value="<?php echo $user['nama_lengkap'] ?>">
                                     </div>
+
                                     <div class="mb-3">
-                                        <label for="namaProduk" class="form-label">Nama Produk</label>
-                                        <input type="text" class="form-control form-control-sm" id="namaProduk"
-                                            name="nama_produk">
+                                        <label for="email_user" class="form-label">Email</label>
+                                        <input type="email" class="form-control form-control-sm" id="email_user"
+                                            name="email_user" value="<?php echo $user['email'] ?>">
                                     </div>
+
                                     <div class="mb-3">
-                                        <label for="deskripsi" class="form-label">Deskripsi</label>
-                                        <textarea class="form-control form-control-sm" id="deskripsi" name="deskripsi"
-                                            rows="2"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="kategori" class="form-label">Kategori</label>
-                                        <select class="form-select form-select-sm" id="kategori" name="kategori">
-                                            <option value="Sembako">Sembako</option>
-                                            <option value="Kebutuhan Rumah Tangga">Kebutuhan Rumah Tangga</option>
-                                            <option value="Minuman">Minuman</option>
-                                            <option value="Kebutuhan Pribadi">Kebutuhan Pribadi</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="merek" class="form-label">Merek</label>
-                                        <input type="text" class="form-control form-control-sm" id="merek" name="merek">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="jumlahStok" class="form-label">Jumlah Stok</label>
-                                        <input type="number" class="form-control form-control-sm disabled"
-                                            id="jumlahStok" name="jumlah_stok" readonly value="0">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="satuan" class="form-label">Satuan</label>
-                                        <select class="form-select form-select-sm" id="satuan" name="satuan">
-                                            <option value="botol">Botol</option>
-                                            <option value="karung">Karung</option>
-                                            <option value="kg">Kg</option>
-                                            <option value="bungkus">Bungkus</option>
-                                            <option value="kotak">Kotak</option>
-                                            <option value="tube">Tube</option>
-                                            <option value="pak">Pak</option>
-                                            <option value="roll">Roll</option>
-                                        </select>
+                                        <label for="no_telepon" class="form-label">No Telepon</label>
+                                        <input type="text" class="form-control form-control-sm" id="no_telepon"
+                                            name="no_telepon" value="<?php echo $user['no_telepon'] ?>">
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="lokasiGudang" class="form-label">Lokasi Gudang</label>
-                                        <select class="form-select form-select-sm" id="lokasiGudang"
-                                            name="lokasi_gudang">
-                                            <option value="A">Gudang A</option>
-                                            <option value="B">Gudang B</option>
-                                            <option value="C">Gudang C</option>
-                                        </select>
+                                        <label for="alamat" class="form-label">Alamat</label>
+                                        <input type="text" class="form-control form-select-sm" id="alamat" name="alamat"
+                                            value="<?php echo $user['alamat'] ?>">
                                     </div>
+
                                     <div class="mb-3">
-                                        <label for="hargaBeli" class="form-label">Harga Beli</label>
-                                        <input type="number" class="form-control form-control-sm" id="hargaBeli"
-                                            name="harga_beli">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="hargaJual" class="form-label">Harga Jual</label>
-                                        <input type="number" class="form-control form-control-sm" id="hargaJual"
-                                            name="harga_jual">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="tanggalMasuk" class="form-label">Tanggal Masuk</label>
-                                        <input type="date" class="form-control form-control-sm" id="tanggalMasuk"
-                                            name="tanggal_masuk">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="kedaluwarsa" class="form-label">Tanggal Kedaluwarsa</label>
-                                        <input type="date" class="form-control form-control-sm" id="kedaluwarsa"
-                                            name="kedaluwarsa">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Status Produk</label>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status_produk"
-                                                id="statusAktif" value="aktif">
-                                            <label class="form-check-label" for="statusAktif">Aktif</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="status_produk"
-                                                id="statusNonAktif" value="non-aktif" checked>
-                                            <label class="form-check-label" for="statusNonAktif">Non-Aktif</label>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="foto" class="form-label">Foto Produk</label>
-                                        <input type="file" class="form-control form-control-sm" id="foto" name="foto">
+                                        <label for="foto_profil" class="form-label">Foto Profil</label>
+                                        <input type="file" class="form-control form-control-sm" id="foto_profil"
+                                            name="foto_profil">
+                                        <p class="small text-muted">Foto saat ini:
+                                            <?= htmlspecialchars($user['foto_profil']) ?></p>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="text-end mt-4">
-                                <button type="submit" class="btn btn-primary">Simpan Produk</button>
-                            </div>
-                        </form>
-                        <!-- Toast notification -->
-                        <script>
-                        <?php if (isset($_SESSION['toast'])): ?>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            <?php
-                                    $toastMessage = $_SESSION['toast'];
-                                    $isSuccess = strpos($toastMessage, '✅') !== false;
-                                    $isError = strpos($toastMessage, '❌') !== false;
-                                    ?>
-                            <?php if ($isSuccess): ?>
-                            toastr.success("<?= str_replace('✅ ', '', $toastMessage); ?>");
-                            <?php elseif ($isError): ?>
-                            toastr.error("<?= str_replace('❌ ', '', $toastMessage); ?>");
-                            <?php else: ?>
-                            toastr.info("<?= $toastMessage; ?>");
-                            <?php endif; ?>
-                            <?php unset($_SESSION['toast']); ?>
-                        });
-                        <?php endif; ?>
-                        </script>
                     </div>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary"
+                            style="margin-right: 20px; margin-bottom:20px ;">Simpan Perubahan</button>
+                    </div>
+                    </form>
                 </div>
         </div>
+    </div>
 
     </div>
     </div>
