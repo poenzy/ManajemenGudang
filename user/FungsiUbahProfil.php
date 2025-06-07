@@ -10,12 +10,22 @@ if (isset($_POST['id_admin'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email_user']);
     $noTel = mysqli_real_escape_string($conn, $_POST['no_telepon']);
     $alamat = mysqli_real_escape_string($conn, $_POST['alamat']);
+    $konfirmasiPassword = mysqli_real_escape_string($conn, $_POST['konfirmasiPassword']);
+    $passwordBaru = mysqli_real_escape_string($conn, $_POST['password1']);
 
     // periksa apakah foto sudah tersedia
     $query = "SELECT * FROM user WHERE id_admin=$id";
     $result = $conn->query($query);
     $row = mysqli_fetch_assoc($result);
     $fotoLama = $row['foto_profil'];
+    $passwordLama = $row['password'];
+    if (!empty($passwordBaru)) {
+        if ($passwordLama == $konfirmasiPassword) {
+            $pasword = $passwordBaru;
+        }
+    } else {
+        $password = $passwordLama;
+    }
 
     if (!empty($_FILES['foto_profil']['name'])) {
         $foto = mysqli_real_escape_string($conn, $_FILES['foto_profil']['name']);
@@ -29,7 +39,9 @@ if (isset($_POST['id_admin'])) {
     email='$email',
     no_telepon='$noTel',
     alamat ='$alamat',
-    foto_profil ='$foto' WHERE id_admin=$id";
+    foto_profil ='$foto',
+    password = '$password'
+    WHERE id_admin=$id";
 
     if ($conn->query($query) == true) {
         $_SESSION['toast'] = 'success data user berhasil diubah!';
